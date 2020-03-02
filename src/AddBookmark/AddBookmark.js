@@ -1,6 +1,7 @@
 import React, { Component } from  'react';
 import config from '../config'
 import './AddBookmark.css';
+import { withRouter } from 'react-router-dom';
 
 const Required = () => (
   <span className='AddBookmark__required'>*</span>
@@ -49,6 +50,7 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
+        this.props.history.push('/') //here we got history inside our promise chain & can programatically navigate on success
         this.props.onAddBookmark(data)
       })
       .catch(error => {
@@ -137,4 +139,4 @@ class AddBookmark extends Component {
   }
 }
 
-export default AddBookmark;
+export default withRouter(AddBookmark);
