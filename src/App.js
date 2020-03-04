@@ -92,7 +92,7 @@ class App extends Component {
           <div className='content' aria-live='polite'>
             <Route
               path='/add-bookmark'
-              /* [reason for omitting this code: see pgs. 13-14 of module 14.16]
+              /* [reason for omitting this code: see pgs. 13-15 of module 14.16]
               render={({ history }) => {
                 return <AddBookmark
                   onAddBookmark={this.addBookmark}
@@ -105,7 +105,7 @@ class App extends Component {
             <Route
               exact
               path='/'
-              /* [reason for omitting this code: see pgs. 13-14 of module 14.16]
+              /* [reason for omitting this code: see pgs. 13-15 of module 14.16]
               render={({ history }) => {
                 return <BookmarkList bookmarks={bookmarks} />
               }}
