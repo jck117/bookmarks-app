@@ -22,6 +22,13 @@ class BookmarkList extends Component {
             <BookmarkItem
               key={bookmark.id}
               {...bookmark}
+              /*              
+              id={bookmark.id}
+              title={bookmark.title}
+              url={bookmark.url}
+              description={bookmark.description}
+              rating={bookmark.rating}
+              */
             />
           )}
         </ul>
@@ -30,8 +37,8 @@ class BookmarkList extends Component {
   }
 }
 
-export default BookmarkList;
 
+export default BookmarkList;
 
 
 //14.17
