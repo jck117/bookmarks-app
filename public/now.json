@@ -1,0 +1,12 @@
+{
+    "version": 2,
+    "alias": "jck117-bookmarks-app",
+    "name": "bookmarks-app",
+    "routes": [
+        { "handle": "filesystem" },
+        { "src": "/.*", "dest": "/index.html" }
+    ]
+}
+
+
+
