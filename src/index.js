@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 
 //14.18
-console.log(process.env)
+//console.log(process.env)
 
 ReactDOM.render(
   <BrowserRouter>
