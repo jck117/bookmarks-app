@@ -1,6 +1,24 @@
+//14.14
+
 import React, { Component } from  'react';
 import config from '../config'
 import './AddBookmark.css';
+/*
+How can we get the history object in here?! It isn't available as a prop to the AddBookmark component. 
+We have two options:
+
+1. Pass history as a prop to AddBookmark inside the render prop of App.
+2. Use the withRouter higher order component (HOC).
+
+The first option looks straightforward! But imagine the AddBookmark was deeper down the tree! 
+Would we want to pass the history as a prop at each child component until it reaches the AddBookmark?
+
+The second option allows us to access the history from any depth of the component tree.
+
+withRouter is a high order component (HOC). (p. 37)
+Higher order components are functions we can pass our components into, 
+they often allow us to inject new props into a component like magic.
+*/
 import { withRouter } from 'react-router-dom';
 
 const Required = () => (
@@ -139,4 +157,6 @@ class AddBookmark extends Component {
   }
 }
 
+//passing the component into the HOC as an argument
+//and exporting the result
 export default withRouter(AddBookmark);
