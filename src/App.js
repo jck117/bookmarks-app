@@ -77,6 +77,8 @@ class App extends Component {
         <h1>Bookmarks!</h1>
         <Nav />
         <div className='content' aria-live='polite'>
+          {/* Using 'render' allows us to write the JSX
+          for these components and thus specify the props to pass (p. 31) */}
           <Route
             path='/add-bookmark'
             render={({history})=> {
