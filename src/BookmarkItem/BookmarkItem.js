@@ -71,11 +71,13 @@ export default function BookmarkItem(props) {
   )
 }
 
+
 BookmarkItem.defaultProps = {
   onClickDelete: () => {},
   rating: 1, //14.17
   description: "" //14.17
 }
+
 
 //14.17
 BookmarkItem.propTypes = {
