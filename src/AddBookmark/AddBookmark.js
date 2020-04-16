@@ -68,7 +68,9 @@ class AddBookmark extends Component {
         url.value = ''
         description.value = ''
         rating.value = ''
-        this.props.history.push('/') //here we got history inside our promise chain & can programatically navigate on success
+        //here we got history inside our promise chain 
+        //& can programatically navigate on success
+        this.props.history.push('/') 
         this.props.onAddBookmark(data)
       })
       .catch(error => {

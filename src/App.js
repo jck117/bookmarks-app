@@ -82,7 +82,8 @@ class App extends Component {
           {/* The function we give to the render prop is given a parameter called "Route-props". 
           The Route props has keys for match, location, and history. Because of these keys, we can 
           destruct the history key out of the route props when describing the function 
-          parameters like so: render={({ history }) => {.
+          parameters like so: 
+          render={({ history }) => {
           This gives us the history object directly to one of the routes! (p. 35)*/}
           <Route
             path='/add-bookmark'
