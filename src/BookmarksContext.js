@@ -4,7 +4,7 @@ const BookmarksContext = React.createContext({
     bookmarks: [],
     addBookmark: () => {},
     deleteBookmark: () => {},
-    updateBookmark: () => {}
+    updateBookmark: () => {},
 })
 
 export default BookmarksContext;
