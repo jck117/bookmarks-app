@@ -1,4 +1,5 @@
-# Bookmarks React Client
-_This project is a demonstration for Thinkful's React course_
+# RESTful APIs
+_Assignment 17.17_
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Solution:  
+<https://github.com/Thinkful-Ed/bookmarks-app/tree/add-update-form>
