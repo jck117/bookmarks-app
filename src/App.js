@@ -60,6 +60,8 @@ class App extends Component {
     })
   }
 
+  updateBookmark = () => {};
+
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
       method: 'GET',
@@ -79,11 +81,14 @@ class App extends Component {
   }
 
   render() {
+    //context provider
     const contextValue = {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
       deleteBookmark: this.deleteBookmark,
+      updateBookmark: this.updateBookmark
     }
+
     return (
       <main className='App'>
         <h1>Bookmarks!</h1>
@@ -111,6 +116,10 @@ class App extends Component {
               }}
               */
               component={BookmarkList}
+            />
+            <Route
+              path='/edit/:bookmarkId'
+              component={EditBookmark}
             />
           </div>
         </BookmarksContext.Provider>  
