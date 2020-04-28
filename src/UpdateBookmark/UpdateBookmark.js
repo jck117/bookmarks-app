@@ -12,6 +12,11 @@ class UpdateBookmark extends Component {
 
   state = {
     error: null,
+    id: null,
+    title: null,
+    url: null,
+    description: null,
+    rating: null
   };
 
   handleSubmit = e => {
@@ -59,9 +64,31 @@ class UpdateBookmark extends Component {
   handleClickCancel = () => {
     this.props.history.push('/')
   };
-  
+
+  componentDidMount(){
+      const bookmarkId = this.props.match.params.bookmarkId;
+      fetch(`${config.API_ENDPOINT}${bookmarkId}`, {
+          method: 'GET',
+          headers: {
+              'Authorization': `Bearer ${config.API_KEY}`
+          }
+      })
+        .then(res => {
+            if (!res.ok){
+                throw new Error(res.status)
+            }
+            return res.json()
+        })
+        .then(responseData => 
+            this.setState({
+                ...responseData
+            })         
+        )
+        .catch(error => console.log(error))
+  }
+
   render() {
-    const { error } = this.state
+    const { error, id, title, url, description, rating } = this.state
     return (
       <section className='AddBookmark'>
         <h2>Update bookmark</h2>
@@ -84,6 +111,7 @@ class UpdateBookmark extends Component {
               id='title'
               placeholder='Great website!'
               required
+              value={title}
             />
           </div>
           <div>
@@ -98,6 +126,7 @@ class UpdateBookmark extends Component {
               id='url'
               placeholder='https://www.great-website.com/'
               required
+              value={url}
             />
           </div>
           <div>
@@ -107,6 +136,7 @@ class UpdateBookmark extends Component {
             <textarea
               name='description'
               id='description'
+              value={description}
             />
           </div>
           <div>
@@ -123,6 +153,7 @@ class UpdateBookmark extends Component {
               min='1'
               max='5'
               required
+              value={rating}
             />
           </div>
           <div className='AddBookmark__buttons'>

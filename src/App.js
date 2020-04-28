@@ -63,9 +63,6 @@ class App extends Component {
 
   updateBookmark = () => {};
 
-
-
-
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
       method: 'GET',
@@ -83,11 +80,7 @@ class App extends Component {
       .then(this.setBookmarks)
       .catch(error => this.setState({ error }))
   }
-
-
-
-
-
+  
   render() {
     //context provider
     const contextValue = {
