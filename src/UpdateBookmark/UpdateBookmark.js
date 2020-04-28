@@ -21,40 +21,22 @@ class UpdateBookmark extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    // get the form fields from the event
-    const { title, url, description, rating } = e.target
-    const bookmark = {
-      title: title.value,
-      url: url.value,
-      description: description.value,
-      rating: rating.value,
-    }
-    this.setState({ error: null })
-    fetch(config.API_ENDPOINT, {
+
+    fetch(`${config.API_ENDPOINT}${this.props.match.params.bookmarkId}`, {
       method: 'PATCH',
-      body: JSON.stringify(bookmark),
+      body: JSON.stringify(this.state),
       headers: {
         'content-type': 'application/json',
         'authorization': `bearer ${config.API_KEY}`
       }
     })
       .then(res => {
-        if (!res.ok) {
-          // get the error message from the response,
-          return res.json().then(error => {
-            // then throw it
-            throw error
-          })
-        }
-        return res.json()
+        if (!res.ok)
+          return res.json().then(error => Promise.reject(error))
       })
-      .then(data => {
-        title.value = ''
-        url.value = ''
-        description.value = ''
-        rating.value = ''
-        this.context.updateBookmark(data)
-        this.props.history.push('/')
+      .then(() => {
+          this.context.updateBookmarks(this.state)
+          this.props.history.push('/')
       })
       .catch(error => {
         this.setState({ error })
@@ -64,6 +46,11 @@ class UpdateBookmark extends Component {
   handleClickCancel = () => {
     this.props.history.push('/')
   };
+
+  handleChange = event =>
+    this.setState({
+        [event.target.name]: event.target.value
+  })
 
   componentDidMount(){
       const bookmarkId = this.props.match.params.bookmarkId;
@@ -112,6 +99,7 @@ class UpdateBookmark extends Component {
               placeholder='Great website!'
               required
               value={title}
+              onChange={this.handleChange}
             />
           </div>
           <div>
@@ -127,6 +115,7 @@ class UpdateBookmark extends Component {
               placeholder='https://www.great-website.com/'
               required
               value={url}
+              onChange={this.handleChange}
             />
           </div>
           <div>
@@ -137,6 +126,7 @@ class UpdateBookmark extends Component {
               name='description'
               id='description'
               value={description}
+              onChange={this.handleChange}
             />
           </div>
           <div>
@@ -154,6 +144,7 @@ class UpdateBookmark extends Component {
               max='5'
               required
               value={rating}
+              onChange={this.handleChange}
             />
           </div>
           <div className='AddBookmark__buttons'>

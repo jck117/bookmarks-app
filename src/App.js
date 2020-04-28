@@ -9,30 +9,6 @@ import './App.css';
 import BookmarksContext from './BookmarksContext';
 
 
-const bookmarks = [
-  // {
-  //   id: 0,
-  //   title: 'Google',
-  //   url: 'http://www.google.com',
-  //   rating: '3',
-  //   desc: 'Internet-related services and products.'
-  // },
-  // {
-  //   id: 1,
-  //   title: 'Thinkful',
-  //   url: 'http://www.thinkful.com',
-  //   rating: '5',
-  //   desc: '1-on-1 learning to accelerate your way to a new high-growth tech career!'
-  // },
-  // {
-  //   id: 2,
-  //   title: 'Github',
-  //   url: 'http://www.github.com',
-  //   rating: '4',
-  //   desc: 'brings together the world\'s largest community of developers.'
-  // }
-];
-
 class App extends Component {
   state = {
     bookmarks: [],
@@ -61,7 +37,17 @@ class App extends Component {
     })
   }
 
-  updateBookmark = () => {};
+  updateBookmarks = updatedBookmark => {
+    const newBookmarks = this.state.bookmarks.map(bookmark => 
+      (bookmark.id === updatedBookmark.id) ?
+        updatedBookmark
+          :
+        bookmark
+      )
+      this.setState({
+        bookmarks: newBookmarks
+      })
+  };
 
   componentDidMount() {
     fetch(config.API_ENDPOINT, {
@@ -87,7 +73,7 @@ class App extends Component {
       bookmarks: this.state.bookmarks,
       addBookmark: this.addBookmark,
       deleteBookmark: this.deleteBookmark,
-      updateBookmark: this.updateBookmark,
+      updateBookmarks: this.updateBookmarks,
     }
 
     return (

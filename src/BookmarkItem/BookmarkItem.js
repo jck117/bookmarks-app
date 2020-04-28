@@ -55,18 +55,10 @@ export default function BookmarkItem(props) {
             {props.description}
           </p>
 
-
-
-
-
           <Link to={`/update-bookmark/${props.id}`}>
             Update Bookmark
           </Link>
 
-
-
-
-          
           <div className='BookmarkItem__buttons'>
             <button
               className='BookmarkItem__description'
