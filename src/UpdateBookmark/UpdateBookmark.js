@@ -22,6 +22,8 @@ class UpdateBookmark extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
+
+
     fetch(`${config.API_ENDPOINT}${this.props.match.params.bookmarkId}`, {
       method: 'PATCH',
       body: JSON.stringify(this.state),
@@ -47,10 +49,11 @@ class UpdateBookmark extends Component {
     this.props.history.push('/')
   };
 
-  handleChange = event =>
+  handleChange = event => {
     this.setState({
         [event.target.name]: event.target.value
-  })
+    })
+  }  
 
   componentDidMount(){
       const bookmarkId = this.props.match.params.bookmarkId;
