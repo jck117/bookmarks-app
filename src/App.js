@@ -50,11 +50,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const apiUrl = config.API_ENDPOINT
-    fetch(apiUrl, {
+    const fetchUrl = config.API_ENDPOINT
+    fetch(fetchUrl, {
       method: 'GET',
       headers: {
-        'Authorization': config.API_KEY
+        "content-type": "application/json",
+        'Authorization': `Bearer ${config.API_KEY}`
       }
     })
       .then(res => {

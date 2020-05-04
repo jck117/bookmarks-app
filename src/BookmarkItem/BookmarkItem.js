@@ -7,10 +7,12 @@ import PropTypes from 'prop-types'; //14.17
 import { Link, Router } from 'react-router-dom';
 
 function deleteBookmarkRequest(bookmarkId, callback) {
-  fetch(config.API_ENDPOINT + `${bookmarkId}`, {
+  const fetchUrl = config.API_ENDPOINT + '/' + + bookmarkId
+  fetch(fetchUrl, {
     method: 'DELETE',
     headers: {
-      'Authorization': config.API_KEY
+      "content-type": "application/json",
+      'Authorization': `Bearer ${config.API_KEY}`    
     }
   })
     .then(res => {
