@@ -29,7 +29,7 @@ class UpdateBookmark extends Component {
       body: JSON.stringify(state2),
       headers: {
         'content-type': 'application/json',
-        'Authorization': `Bearer ${config.API_KEY}`
+        'Authorization': config.API_KEY
       }
     })
       .then(res => {
@@ -61,7 +61,7 @@ class UpdateBookmark extends Component {
       fetch(fetchUrl, {
           method: 'GET',
           headers: {
-              'Authorization': `Bearer ${config.API_KEY}`
+              'Authorization': config.API_KEY
           }
       })
         .then(res => {

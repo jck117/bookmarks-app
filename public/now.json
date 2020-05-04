@@ -1,6 +1,5 @@
 {
     "version": 2,
-    "alias": "jck-bookmarks-app",
     "name": "bookmarks-app",
     "routes": [
         { 

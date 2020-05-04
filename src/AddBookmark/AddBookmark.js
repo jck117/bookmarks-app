@@ -26,12 +26,12 @@ class AddBookmark extends Component {
       rating: rating
     }
     this.setState({ error: null })
-    fetch(config.API_ENDPOINT, {
+    const apiUrl = config.API_ENDPOINT
+    fetch(apiUrl, {
       method: 'POST',
       body: JSON.stringify(bookmark),
       headers: {
-        'content-type': 'application/json',
-        'authorization': `Bearer ${config.API_KEY}`
+        'Authorization': config.API_KEY
       }
     })
       .then(res => {
