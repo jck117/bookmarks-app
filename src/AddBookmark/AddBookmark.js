@@ -27,14 +27,15 @@ class AddBookmark extends Component {
     }
     console.log(bookmark)
     this.setState({ error: null })
-    const fetchUrl = config.API_ENDPOINT
+    const fetchUrl = config.API_ENDPOINT + '/bookmarks'
     console.log(fetchUrl)
     fetch(fetchUrl, {
       method: 'POST',
       body: JSON.stringify(bookmark),
       headers: {
         "content-type": "application/json; charset=utf-8",
-        'Authorization': `Bearer ${config.API_KEY}`}
+        'Authorization':  config.API_KEY
+      }
     })
       .then(res => {
         if (!res.ok) {

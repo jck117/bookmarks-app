@@ -50,12 +50,12 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const fetchUrl = config.API_ENDPOINT
+    const fetchUrl = config.API_ENDPOINT + '/bookmarks'
     fetch(fetchUrl, {
       method: 'GET',
       headers: {
         "content-type": "application/json",
-        'Authorization': `Bearer ${config.API_KEY}`
+        'Authorization': config.API_KEY
       }
     })
       .then(res => {
