@@ -4,34 +4,31 @@ import './BookmarkItem.css';
 import config from '../config';
 import BookmarksContext from '../BookmarksContext';
 import PropTypes from 'prop-types'; //14.17
-import { Link, BrowserRouter } from 'react-router-dom';
-
+import { Link, Router } from 'react-router-dom';
 
 function deleteBookmarkRequest(bookmarkId, callback) {
-  fetch(config.API_ENDPOINT + `/${bookmarkId}`, {
+  fetch(config.API_ENDPOINT + `${bookmarkId}`, {
     method: 'DELETE',
     headers: {
-      'authorization': `bearer ${config.API_KEY}`
+      'content-type': 'application/json',
+      'authorization': `Bearer ${config.API_KEY}`
     }
   })
     .then(res => {
       if (!res.ok) {
-        // get the error message from the response,
-        return res.json().then(error => {
-          // then throw it
-          throw error
-        })
+        //throw new Error(res.statusText)
+        return res.json().then(error => Promise.reject(error))
       }
-      return res.json()
+      return res.text()
     })
-    .then(data => {
-      // call the callback when the request is successful
-      // this is where the App component can remove it from state
-      callback(bookmarkId)
-    })
-    .catch(error => {
-      console.error(error)
-    })
+    .then(text => text ? 
+      text.json()
+       :
+      {}  
+    )
+    .then(callback(bookmarkId))
+    .catch(error => console.error(error)
+    )
 }
 
 export default function BookmarkItem(props) {
@@ -55,11 +52,11 @@ export default function BookmarkItem(props) {
             {props.description}
           </p>
           
-          <BrowserRouter>
+         
             <Link to={`/update-bookmark/${props.id}`}>
               Update Bookmark
             </Link>
-          </BrowserRouter>
+          
 
           <div className='BookmarkItem__buttons'>
             <button
@@ -83,7 +80,7 @@ export default function BookmarkItem(props) {
 BookmarkItem.defaultProps = {
   title: "",
   url: "https://",
-  onClickDelete: () => {},
+  //onClickDelete: () => {},
   rating: 1, //14.17
   description: "" //14.17
 }

@@ -11,20 +11,22 @@ class UpdateBookmark extends Component {
   static contextType = BookmarksContext;
 
   state = {
-    error: null,
-    id: null,
-    title: null,
-    url: null,
-    description: null,
-    rating: null
+    error: '',
+    //id: undefined,
+    title: '',
+    url: '',
+    description: '',
+    rating: 5
   };
 
   handleSubmit = e => {
     e.preventDefault()
-
-    fetch(`${config.API_ENDPOINT}${this.props.match.params.bookmarkId}`, {
+    const fetchUrl = config.API_ENDPOINT + this.props.match.params.bookmarkId;
+    const num = parseInt(this.state.rating)
+    const state2 = {...this.state, rating: num}
+    fetch(fetchUrl, {
       method: 'PATCH',
-      body: JSON.stringify(this.state),
+      body: JSON.stringify(state2),
       headers: {
         'content-type': 'application/json',
         'Authorization': `Bearer ${config.API_KEY}`
@@ -35,7 +37,7 @@ class UpdateBookmark extends Component {
           return res.json().then(error => Promise.reject(error))
       })
       .then(() => {
-          this.context.updateBookmarks(this.state)
+          this.context.updateBookmarks(state2)
           this.props.history.push('/')
       })
       .catch(error => {
@@ -55,7 +57,8 @@ class UpdateBookmark extends Component {
 
   componentDidMount(){
       const bookmarkId = this.props.match.params.bookmarkId;
-      fetch(`${config.API_ENDPOINT}${bookmarkId}`, {
+      const fetchUrl = config.API_ENDPOINT + bookmarkId;
+      fetch(fetchUrl, {
           method: 'GET',
           headers: {
               'Authorization': `Bearer ${config.API_KEY}`
@@ -70,13 +73,13 @@ class UpdateBookmark extends Component {
         .then(responseData => 
             this.setState({
                 ...responseData
-            })         
+            })
         )
-        .catch(error => console.log(error))
+        .catch(error => console.error(error))
   }
 
   render() {
-    const { error, id, title, url, description, rating } = this.state
+    const { error, title, url, description, rating } = this.state
     return (
       <section className='AddBookmark'>
         <h2>Update bookmark</h2>
@@ -140,7 +143,7 @@ class UpdateBookmark extends Component {
               type='number'
               name='rating'
               id='rating'
-              defaultValue='1'
+              //defaultValue='1'
               min='1'
               max='5'
               required

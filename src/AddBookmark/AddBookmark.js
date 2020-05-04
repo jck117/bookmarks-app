@@ -17,12 +17,13 @@ class AddBookmark extends Component {
   handleSubmit = e => {
     e.preventDefault()
     // get the form fields from the event
-    const { title, url, description, rating } = e.target
+    const { title, url, description } = e.target
+    const rating = parseInt(e.target.rating.value)
     const bookmark = {
       title: title.value,
       url: url.value,
       description: description.value,
-      rating: rating.value,
+      rating: rating
     }
     this.setState({ error: null })
     fetch(config.API_ENDPOINT, {
@@ -30,24 +31,22 @@ class AddBookmark extends Component {
       body: JSON.stringify(bookmark),
       headers: {
         'content-type': 'application/json',
-        'authorization': `bearer ${config.API_KEY}`
+        'authorization': `Bearer ${config.API_KEY}`
       }
     })
       .then(res => {
         if (!res.ok) {
-          // get the error message from the response,
-          return res.json().then(error => {
-            // then throw it
-            throw error
-          })
+          return res.json().then(error => Promise.reject(error))          
         }
         return res.json()
       })
       .then(data => {
+        /*
         title.value = ''
         url.value = ''
         description.value = ''
         rating.value = ''
+        */
         this.context.addBookmark(data)
         this.props.history.push('/')
       })
@@ -55,6 +54,7 @@ class AddBookmark extends Component {
         this.setState({ error })
       })
   }
+
 
   handleClickCancel = () => {
     this.props.history.push('/')
@@ -119,7 +119,7 @@ class AddBookmark extends Component {
               type='number'
               name='rating'
               id='rating'
-              defaultValue='1'
+              defaultValue='3'
               min='1'
               max='5'
               required
