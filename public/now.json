@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "alias": "jck-bookmarks-app",
+    "name": "bookmarks-app",
+    "routes": [
+        { 
+          "src": "^/static/(.*)", 
+          "dest": "/static/$1" 
+        },
+        { 
+          "src": ".*", 
+          "dest": "/index.html" 
+        }
+    ]
+}
+
+
+
+

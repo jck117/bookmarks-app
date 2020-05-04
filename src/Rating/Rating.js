@@ -15,12 +15,12 @@ export default function Rating(props) {
   );
 }
 
-/*
+
 //14.17 (pg. 29)
 Rating.defaultProps = {
-  value: 1
+  value: 4
 }
-*/
+
 
 //14.17
 Rating.propTypes = {
