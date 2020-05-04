@@ -22,8 +22,6 @@ class UpdateBookmark extends Component {
   handleSubmit = e => {
     e.preventDefault()
 
-
-
     fetch(`${config.API_ENDPOINT}${this.props.match.params.bookmarkId}`, {
       method: 'PATCH',
       body: JSON.stringify(this.state),
