@@ -50,7 +50,7 @@ class App extends Component {
   };
 
   componentDidMount() {
-    const fetchUrl = config.API_ENDPOINT + '/bookmarks'
+    const fetchUrl = config.API_ENDPOINT + '/api/bookmarks'
     fetch(fetchUrl, {
       method: 'GET',
       headers: {

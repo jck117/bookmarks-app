@@ -21,7 +21,7 @@ class UpdateBookmark extends Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    const fetchUrl = config.API_ENDPOINT + '/bookmarks/' + this.props.match.params.bookmarkId;
+    const fetchUrl = config.API_ENDPOINT + '/api/bookmarks/' + this.props.match.params.bookmarkId;
     const num = parseInt(this.state.rating)
     const state2 = {...this.state, rating: num}
     fetch(fetchUrl, {
@@ -57,7 +57,7 @@ class UpdateBookmark extends Component {
 
   componentDidMount(){
       const bookmarkId = this.props.match.params.bookmarkId;
-      const fetchUrl = config.API_ENDPOINT + '/bookmarks/' + bookmarkId;
+      const fetchUrl = config.API_ENDPOINT + '/api/bookmarks/' + bookmarkId;
       fetch(fetchUrl, {
           method: 'GET',
           headers: {

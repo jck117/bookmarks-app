@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'; //14.17
 import { Link, Router } from 'react-router-dom';
 
 function deleteBookmarkRequest(bookmarkId, callback) {
-  const fetchUrl = config.API_ENDPOINT + '/bookmarks/' + bookmarkId
+  const fetchUrl = config.API_ENDPOINT + '/api/bookmarks/' + bookmarkId
   fetch(fetchUrl, {
     method: 'DELETE',
     headers: {

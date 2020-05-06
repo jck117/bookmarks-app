@@ -27,7 +27,7 @@ class AddBookmark extends Component {
     }
     console.log(bookmark)
     this.setState({ error: null })
-    const fetchUrl = config.API_ENDPOINT + '/bookmarks'
+    const fetchUrl = config.API_ENDPOINT + '/api/bookmarks'
     console.log(fetchUrl)
     fetch(fetchUrl, {
       method: 'POST',
