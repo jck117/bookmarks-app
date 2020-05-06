@@ -4,7 +4,7 @@ import './BookmarkItem.css';
 import config from '../config';
 import BookmarksContext from '../BookmarksContext';
 import PropTypes from 'prop-types'; //14.17
-import { Link, Router } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 function deleteBookmarkRequest(bookmarkId, callback) {
   const fetchUrl = config.API_ENDPOINT + '/api/bookmarks/' + bookmarkId
